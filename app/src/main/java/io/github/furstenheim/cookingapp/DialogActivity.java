@@ -5,9 +5,11 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -90,6 +92,8 @@ public class DialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // this.getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
         super.onCreate(savedInstanceState);
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        System.out.println(clipboard);
 
         setContentView(R.layout.activity_dialog);
         this.getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);

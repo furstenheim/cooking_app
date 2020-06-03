@@ -15,12 +15,17 @@
                 android:label="@string/title_activity_dialog"
                 android:theme="@style/FullscreenTheme">
             <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/*"/>
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="text/*"/>
-                <data android:mimeType="image/*"/>
             </intent-filter>
         </activity>
+<!--        <data android:mimeType="image/*"/>-->
         <activity
                 android:name=".FullscreenActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"

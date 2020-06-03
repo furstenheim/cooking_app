@@ -5,10 +5,14 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+
+import io.github.furstenheim.CopyDown;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -85,10 +89,13 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
 
+    private CopyDown copyDown;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        copyDown = new CopyDown();
         setContentView(R.layout.activity_fullscreen);
 
         mVisible = true;
@@ -121,6 +128,8 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void toggle() {
+        ClipData primaryClip = ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE))
+                .getPrimaryClip();
         if (mVisible) {
             hide();
         } else {
