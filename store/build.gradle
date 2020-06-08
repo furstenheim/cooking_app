@@ -19,4 +19,9 @@ dependencies {
             'com.google.code.gson:gson:2.8.6'
     )
     implementation 'io.github.furstenheim:copy_down:1.0'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
