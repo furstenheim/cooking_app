@@ -17,14 +17,17 @@ public class State {
     @Builder.Default
     Navigation currentNavigation = Navigation.VIEW;
 
+    @Builder.Default
+    Recipe currentRecipe = null;
+
     @Data
     public static class Recipe {
         public String recipeText;
         public String url;
-        /*public Recipe (String recipeText, String url) {
+        public Recipe (String recipeText, String url) {
             this.recipeText = recipeText;
             this.url = url;
-        }*/
+        }
     }
 
     public static enum Navigation {

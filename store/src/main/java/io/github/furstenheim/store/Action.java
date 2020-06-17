@@ -8,6 +8,16 @@ public abstract class Action {
     }
     @Data
     public static class CreateRecipeFromHTML extends Action {
-        public final String recipeHTML;
+        private final String recipeHTML;
+    }
+
+    @Data
+    public static class NavigateToList extends Action {
+
+    }
+
+    @Data
+    public static class NavigateToView extends Action {
+        private final State.Recipe nextRecipe;
     }
 }

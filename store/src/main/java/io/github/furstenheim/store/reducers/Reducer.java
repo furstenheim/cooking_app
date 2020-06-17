@@ -12,9 +12,13 @@ public abstract class Reducer<T extends Action> {
         return State.builder()
                 .recipeList(reduceRecipeList(action, currentState.getRecipeList()))
                 .currentNavigation(reduceNavigation(action, currentState.getCurrentNavigation()))
+                .currentRecipe(reduceCurrentRecipe(action, currentState.getCurrentRecipe()))
                 .build();
     }
     public State.Navigation reduceNavigation(T action, State.Navigation current) {
+        return current;
+    }
+    public State.Recipe reduceCurrentRecipe(T action, State.Recipe current) {
         return current;
     }
     public List<State.Recipe> reduceRecipeList (T action, List<State.Recipe> recipeList) {

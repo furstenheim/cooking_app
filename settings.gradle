@@ -1,2 +1,3 @@
 rootProject.name='CookingApp'
 include ':app'
+include ':store'
