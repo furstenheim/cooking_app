@@ -17,7 +17,7 @@
     </fragment>
     <fragment
             android:id="@+id/nav_home_second"
-            android:name="io.github.furstenheim.cookingapp.ui.home.HomeSecondFragment"
+            android:name="io.github.furstenheim.cookingapp.ui.homeSecond.HomeSecondFragment"
             android:label="@string/home_second"
             tools:layout="@layout/fragment_home_second">
         <action

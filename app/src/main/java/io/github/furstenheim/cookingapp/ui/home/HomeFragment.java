@@ -1,9 +1,12 @@
 package io.github.furstenheim.cookingapp.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.navigation.Navigator;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,5 +41,33 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        System.out.println("---------->attach");
+
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onStart() {
+        System.out.println("---------->start");
+        super.onStart();
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        System.out.println("---------->view created");
+
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        System.out.println("---------->inflate");
+        super.onInflate(context, attrs, savedInstanceState);
+
     }
 }
