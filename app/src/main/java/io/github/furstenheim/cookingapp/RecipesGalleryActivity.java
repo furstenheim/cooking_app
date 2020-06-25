@@ -55,7 +55,7 @@ public class RecipesGalleryActivity extends AppCompatActivity {
                 /*NavHostFragment finalHost = NavHostFragment.create(R.navigation.mobile_navigation);*/
                 NavController navController1 = Navigation
                         .findNavController(thiz, R.id.nav_host_fragment);
-                navController1.navigate(R.id.nav_home_second);
+                navController1.navigate(R.id.nav_home);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
