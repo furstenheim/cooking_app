@@ -1,18 +1,16 @@
 package io.github.furstenheim.store;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
 import lombok.Getter;
 
 public abstract class Subscriber<T> {
     @Getter
-    private ThreadPoolExecutor threadPoolExecutor;
-    public Subscriber(ThreadPoolExecutor threadPoolExecutor) {
-        this.threadPoolExecutor = threadPoolExecutor;
+    private ThreadExecutorService threadExecutorService;
+    public Subscriber(ThreadExecutorService threadExecutorService) {
+        this.threadExecutorService = threadExecutorService;
     }
     public void onNext(T data) {
-        if (this.threadPoolExecutor != null) {
-            this.threadPoolExecutor.execute(() -> handle(data));
+        if (this.threadExecutorService != null) {
+            this.threadExecutorService.execute(() -> handle(data));
         }
 
         handle(data);

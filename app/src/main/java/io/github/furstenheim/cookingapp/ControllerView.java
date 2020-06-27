@@ -22,7 +22,7 @@ public abstract class ControllerView extends StateHandler implements LifecycleCa
     @Override
     public void onStart() {
         isActivityRunning = true;
-        // TODO store.stateHandlers.add(this)
+        store.getStateHandlers().add(this);
         handleState(store.getState());
     }
 
@@ -43,7 +43,7 @@ public abstract class ControllerView extends StateHandler implements LifecycleCa
 
     @Override
     public void onDestroy() {
-        // TODO store.stateHandlers.remove(this)
+        store.getStateHandlers().remove(this);
     }
 
     @Override

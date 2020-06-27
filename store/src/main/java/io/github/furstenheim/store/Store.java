@@ -2,20 +2,19 @@ package io.github.furstenheim.store;
 
 import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 
-import io.github.furstenheim.store.reducers.AddRecipeFromHTMLReducer;
 import io.github.furstenheim.store.reducers.Reducers;
 
 public class Store implements Subscribers {
-    ThreadPoolExecutor a = null;
     private CopyOnWriteArrayList<SideEffect> sideEffects;
     private CopyOnWriteArrayList<StateHandler> stateHandlers;
     private Queue<Action> actions = new LinkedBlockingQueue<>();
-    private ThreadPoolExecutor threadPoolExecutor = null;
+    private ThreadExecutorService threadExecutor = null;
 
+    public Store(ThreadExecutorService threadExecutor) {
+        this.threadExecutor = threadExecutor;
+    }
 
     public State getState() {
         return state;
@@ -36,10 +35,10 @@ public class Store implements Subscribers {
     @Override
     public synchronized void dispatch(Action action) {
         actions.offer(action);
-        if (threadPoolExecutor == null) {
+        if (threadExecutor == null) {
             handle(actions.poll());
         } else {
-            threadPoolExecutor.execute(() -> handle(actions.poll()));
+            threadExecutor.execute(() -> handle(actions.poll()));
         }
     }
 

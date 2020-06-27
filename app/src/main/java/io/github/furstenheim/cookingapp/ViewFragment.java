@@ -1,29 +1,30 @@
 package io.github.furstenheim.cookingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public abstract class ViewActivity<T extends ControllerView> extends AppCompatActivity {
+public abstract class ViewFragment<T extends ControllerView> extends Fragment {
     T controllerView;
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         controllerView.onDestroy();
     }
 
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         controllerView.onPause();
     }
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         controllerView.onStart();
     }
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         controllerView.onStop();
     }
