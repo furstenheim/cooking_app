@@ -4,8 +4,8 @@ import lombok.Getter;
 
 public abstract class StateHandler extends Subscriber<State> {
     @Getter
-    private ThreadExecutorService threadExecutorService;
-    public StateHandler (ThreadExecutorService threadExecutorService) {
+    private ThreadExecutor threadExecutorService;
+    public StateHandler (ThreadExecutor threadExecutorService) {
         super(threadExecutorService);
     }
 }

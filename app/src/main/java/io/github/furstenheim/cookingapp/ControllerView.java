@@ -5,13 +5,15 @@ import java.util.concurrent.ThreadPoolExecutor;
 import io.github.furstenheim.store.State;
 import io.github.furstenheim.store.StateHandler;
 import io.github.furstenheim.store.Store;
+import io.github.furstenheim.store.ThreadExecutor;
+import io.github.furstenheim.store.ThreadExecutorService;
 
 public abstract class ControllerView extends StateHandler implements LifecycleCallbacks  {
     private Store store;
-    private ThreadPoolExecutor mainThread;
+    private ThreadExecutor mainThread;
     private Boolean isActivityRunning = false;
 
-    public ControllerView (Store store, ThreadPoolExecutor mainThread) {
+    public ControllerView (Store store, ThreadExecutor mainThread) {
         super(mainThread);
         this.store = store;
         this.mainThread = mainThread;

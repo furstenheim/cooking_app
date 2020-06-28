@@ -7,8 +7,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import io.github.furstenheim.store.reducers.Reducers;
 
 public class Store implements Subscribers {
-    private CopyOnWriteArrayList<SideEffect> sideEffects;
-    private CopyOnWriteArrayList<StateHandler> stateHandlers;
+    private CopyOnWriteArrayList<SideEffect> sideEffects = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<StateHandler> stateHandlers = new CopyOnWriteArrayList<>();
     private Queue<Action> actions = new LinkedBlockingQueue<>();
     private ThreadExecutorService threadExecutor = null;
 

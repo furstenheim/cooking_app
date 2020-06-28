@@ -4,13 +4,13 @@ import lombok.Getter;
 
 public abstract class Subscriber<T> {
     @Getter
-    private ThreadExecutorService threadExecutorService;
-    public Subscriber(ThreadExecutorService threadExecutorService) {
-        this.threadExecutorService = threadExecutorService;
+    private ThreadExecutor threadExecutor;
+    public Subscriber(ThreadExecutor threadExecutor) {
+        this.threadExecutor = threadExecutor;
     }
     public void onNext(T data) {
-        if (this.threadExecutorService != null) {
-            this.threadExecutorService.execute(() -> handle(data));
+        if (this.threadExecutor != null) {
+            this.threadExecutor.execute(() -> handle(data));
         }
 
         handle(data);

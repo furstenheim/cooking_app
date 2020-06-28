@@ -11,7 +11,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".RecipesGalleryActivity"
+                android:name=".RecipesGallery.RecipesGalleryActivity"
                 android:label="@string/title_activity_recipes_gallery"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

@@ -1,4 +1,4 @@
-package io.github.furstenheim.cookingapp;
+package io.github.furstenheim.cookingapp.RecipesGallery;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,19 +10,22 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import io.github.furstenheim.cookingapp.ui.gallery.GalleryFragment;
-import io.github.furstenheim.cookingapp.ui.home.HomeFragment;
+import java.lang.ref.WeakReference;
 
-public class RecipesGalleryActivity extends AppCompatActivity {
+import io.github.furstenheim.cookingapp.AppStore;
+import io.github.furstenheim.cookingapp.ControllerView;
+import io.github.furstenheim.cookingapp.MainThread;
+import io.github.furstenheim.cookingapp.R;
+import io.github.furstenheim.cookingapp.ViewActivity;
+import io.github.furstenheim.store.ThreadExecutor;
+
+public class RecipesGalleryActivity extends ViewActivity<RecipesGalleryControllerView> implements RecipesGalleryViewCallback {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -30,6 +33,7 @@ public class RecipesGalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_gallery);
+        setupControllerView();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -74,5 +78,12 @@ public class RecipesGalleryActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void setupControllerView() {
+        RecipesGalleryControllerView controllerView = new RecipesGalleryControllerView(AppStore.AppStore(),
+                                                                         new MainThread(new WeakReference(this)), new WeakReference<RecipesGalleryViewCallback>(this));
+        registerControllerViewForLifecycle(controllerView);
     }
 }
