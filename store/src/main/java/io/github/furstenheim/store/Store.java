@@ -20,7 +20,7 @@ public class Store implements Subscribers {
         return state;
     }
 
-    State state = null;
+    State state = State.builder().build();
 
     @Override
     public CopyOnWriteArrayList<SideEffect> getSideEffects() {

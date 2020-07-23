@@ -3,7 +3,7 @@ package io.github.furstenheim.cookingapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class ViewActivity<T extends ControllerView> extends AppCompatActivity {
-    T controllerView;
+    protected T controllerView;
 
     @Override
     protected void onDestroy() {

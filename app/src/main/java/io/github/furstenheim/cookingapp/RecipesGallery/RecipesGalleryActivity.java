@@ -1,5 +1,7 @@
 package io.github.furstenheim.cookingapp.RecipesGallery;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -19,11 +21,9 @@ import androidx.appcompat.widget.Toolbar;
 import java.lang.ref.WeakReference;
 
 import io.github.furstenheim.cookingapp.AppStore;
-import io.github.furstenheim.cookingapp.ControllerView;
 import io.github.furstenheim.cookingapp.MainThread;
 import io.github.furstenheim.cookingapp.R;
 import io.github.furstenheim.cookingapp.ViewActivity;
-import io.github.furstenheim.store.ThreadExecutor;
 
 public class RecipesGalleryActivity extends ViewActivity<RecipesGalleryControllerView> implements RecipesGalleryViewCallback {
 
@@ -56,12 +56,7 @@ public class RecipesGalleryActivity extends ViewActivity<RecipesGalleryControlle
             // TODO save recipe
             @Override
             public void onClick(View view) {
-                /*NavHostFragment finalHost = NavHostFragment.create(R.navigation.mobile_navigation);*/
-                NavController navController1 = Navigation
-                        .findNavController(thiz, R.id.nav_host_fragment);
-                navController1.navigate(R.id.nav_home);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addNewRecipe(view);
             }
         });
     }
@@ -85,5 +80,27 @@ public class RecipesGalleryActivity extends ViewActivity<RecipesGalleryControlle
         RecipesGalleryControllerView controllerView = new RecipesGalleryControllerView(AppStore.AppStore(),
                                                                          new MainThread(new WeakReference(this)), new WeakReference<RecipesGalleryViewCallback>(this));
         registerControllerViewForLifecycle(controllerView);
+    }
+
+    private void addNewRecipe (View view) {
+        ClipData primaryClip = ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE))
+                .getPrimaryClip();
+        if (primaryClip == null) {
+            Snackbar.make(view, "Unknown error", Snackbar.LENGTH_LONG)
+                    /*.setAction("Action", null)*/.show();
+        } else if (primaryClip.getItemCount() == 0) {
+            Snackbar.make(view, "No recipe pasted", Snackbar.LENGTH_LONG)
+                    /*.setAction("Action", null)*/.show();
+        } else if (!primaryClip.getDescription().getLabel().equals("html")) {
+            Snackbar.make(view, "Only html content allowed", Snackbar.LENGTH_LONG).show();
+        } else {
+            this.controllerView.addHTMLRecipe(primaryClip.getItemAt(0).getHtmlText());
+        }
+        /*
+        *//*NavHostFragment finalHost = NavHostFragment.create(R.navigation.mobile_navigation);*//*
+        NavController navController1 = Navigation
+                .findNavController(thiz, R.id.nav_host_fragment);
+        navController1.navigate(R.id.nav_home);*/
+
     }
 }

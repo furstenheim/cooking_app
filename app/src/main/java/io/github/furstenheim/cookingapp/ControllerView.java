@@ -9,9 +9,9 @@ import io.github.furstenheim.store.ThreadExecutor;
 import io.github.furstenheim.store.ThreadExecutorService;
 
 public abstract class ControllerView extends StateHandler implements LifecycleCallbacks  {
-    private Store store;
-    private ThreadExecutor mainThread;
-    private Boolean isActivityRunning = false;
+    protected Store store;
+    protected ThreadExecutor mainThread;
+    protected Boolean isActivityRunning = false;
 
     public ControllerView (Store store, ThreadExecutor mainThread) {
         super(mainThread);
